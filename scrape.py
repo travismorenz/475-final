@@ -22,6 +22,11 @@ auth = {
     }
 
 subreddit_names = [
+    'askreddit',
+    'videos',
+    'funny',
+    'news',
+    'memes',
     'fantasy'
     ]
 
