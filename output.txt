@@ -1,0 +1,84 @@
+General
+                               mean
+dataset  day      hour             
+outliers Friday   13    1422.755827
+         Thursday 12    1265.501647
+         Friday   14    1188.860702
+                                 mean
+dataset     day      hour            
+no outliers Friday   14    361.113557
+            Thursday 12    286.729025
+                     7     264.547591
+
+r/askreddit
+                               mean
+dataset  day       hour            
+outliers Thursday  7     366.015873
+         Wednesday 10    361.975000
+         Tuesday   23    361.720721
+                                 mean
+dataset     day       hour           
+no outliers Thursday  12    99.857955
+            Wednesday 21    90.251142
+                      22    77.546875
+
+r/videos
+                              mean
+dataset  day      hour            
+outliers Thursday 1     741.993197
+         Tuesday  1     563.893617
+         Friday   12    474.888889
+                                 mean
+dataset     day      hour            
+no outliers Thursday 12    144.123810
+            Monday   2     107.072917
+                     3     106.125000
+
+r/funny
+                               mean
+dataset  day      hour             
+outliers Saturday 13    3177.214286
+         Tuesday  12    2078.142045
+                  21    1947.734783
+                                 mean
+dataset     day      hour            
+no outliers Saturday 14    597.265625
+                     18    413.704036
+            Sunday   6     404.309645
+
+r/news
+                               mean
+dataset  day       hour            
+outliers Thursday  22    979.640394
+         Friday    23    780.652632
+         Wednesday 11    639.471591
+                               mean
+dataset     day    hour            
+no outliers Sunday 23    182.610329
+                   21    145.848185
+            Monday 17    121.841346
+
+r/memes
+                               mean
+dataset  day      hour             
+outliers Friday   14    4648.407767
+                  13    4396.471861
+         Thursday 12    4243.921739
+                                  mean
+dataset     day      hour             
+no outliers Friday   14    1299.770053
+            Thursday 7      960.369668
+                     12     876.383495
+
+r/fantasy
+                              mean
+dataset  day      hour            
+outliers Saturday 23    765.333333
+         Thursday 22    684.888889
+         Sunday   11    571.000000
+                                 mean
+dataset     day      hour            
+no outliers Saturday 23    765.333333
+            Thursday 22    684.888889
+            Sunday   11    571.000000
+
