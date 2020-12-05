@@ -59,7 +59,7 @@ for version, subreddit in enumerate(subreddit_names):
     starttime = time.time()
     
     # Make 730 calls to the PushShift API (one for each hour in a month)
-    # Initially, I store only the ids of the posts because the rest of the metadata is not up to date
+    # Initially store only the ids of the posts because the rest of the metadata is not up to date
     ids = []
     print(f"***Collecting posts for {subreddit}***")
     for i in range(730):
@@ -85,7 +85,7 @@ for version, subreddit in enumerate(subreddit_names):
                 ids.append(submission['id'])
     
     
-    # Now I query the reddit API directly to get the updated metadata for the posts I have and add them to the dataframe
+    # Now query the reddit API directly to get the updated metadata for the posts we have and add them to the dataframe
     print("Populating dataframe")
     ids = [f"t3_{x}" for x in ids]
     reddit = praw.Reddit(**auth)
