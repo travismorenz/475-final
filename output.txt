@@ -1,3 +1,4 @@
+
 General
                                mean
 dataset  day      hour             
@@ -81,4 +82,3 @@ dataset     day      hour
 no outliers Saturday 23    765.333333
             Thursday 22    684.888889
             Sunday   11    571.000000
-
