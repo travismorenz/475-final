@@ -82,3 +82,29 @@ dataset     day      hour
 no outliers Saturday 23    765.333333
             Thursday 22    684.888889
             Sunday   11    571.000000
+
+General Polarity
+                       mean   count
+title_sentiment                    
+negative         179.474288   11765
+neutral          152.648464  164959
+positive         142.817081   29811
+Filter on low scores
+                        mean  count
+title_sentiment                    
+negative         2125.364324    925
+neutral          2153.881723  10932
+positive         2227.117811   1791
+
+News Polarity
+                      mean  count
+title_sentiment                  
+negative         85.309138   1543
+neutral          39.837541  45513
+positive         21.403470   5418
+Filter on low scores
+                        mean  count
+title_sentiment                    
+negative         1953.257576     66
+neutral          1644.760190   1055
+positive         1494.236111     72

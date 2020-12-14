@@ -41,7 +41,20 @@ def plot_polarity(df, title):
     ax.set_title(title)
     plt.show()
     plt.clf()
+    
+    
+def output_sentiment_stats(df, title):
+    output(title)
+    stats = df.groupby(['title_sentiment'])["score"].agg(['mean', 'count'])
+    output(stats)
+    output('Filter on low scores')
+    df = df[df['score'] > 100]
+    stats = df.groupby(['title_sentiment'])["score"].agg(['mean', 'count'])
+    output(stats)
+    output()
+    
 
+# Acts as a print fn, except that it pipes to a file
 def output(txt=''):
     global outputText
     outputText = outputText + "\n" + str(txt)
@@ -98,14 +111,17 @@ for subreddit in subreddit_names:
 
 # Plot general polarity
 plot_polarity(df_no, 'General Polarity')
+output_sentiment_stats(df_no, 'General Polarity')
 
 # Plot polarity without neutral
 df_no_pn = df_no[df_no['title_sentiment'] != "neutral"]
 plot_polarity(df_no_pn, 'Polarity w/o neutrals')
 
+# TODO: Do for all subreddits
 # Plot news polarity
 df_no_news = df_no[df_no['subreddit'] == "news"]
 plot_polarity(df_no_news, 'News Polarity')
+output_sentiment_stats(df_no_news, 'News Polarity')
 
 df_no_news_pn = df_no_pn[df_no_pn['subreddit'] == "news"]
 plot_polarity(df_no_news_pn, 'News polarity w/o neutrals')
