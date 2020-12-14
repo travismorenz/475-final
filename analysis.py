@@ -34,8 +34,8 @@ def plot_avgs(data, hue, title):
     
     
 # For creating the polarity plots
-def plot_polarity(df, title):
-    ax = sns.scatterplot(df['title_polarity'], df['score'])
+def plot_polarity(df, title, hue=None):
+    ax = sns.scatterplot(df['title_polarity'], df['score'], hue=hue)
     ax.set_ylabel("Score")
     ax.set_xlabel("Title Polarity")
     ax.set_title(title)
@@ -48,7 +48,7 @@ def output_sentiment_stats(df, title):
     stats = df.groupby(['title_sentiment'])["score"].agg(['mean', 'count'])
     output(stats)
     output('Filter on low scores')
-    df = df[df['score'] > 100]
+    df = df[df['score'] > 5]
     stats = df.groupby(['title_sentiment'])["score"].agg(['mean', 'count'])
     output(stats)
     output()
@@ -121,25 +121,30 @@ for subreddit in subreddit_names:
 # Analyze sentiment
 ###################################################################################################
 
-# Plot general polarity
-plot_polarity(df_no, 'Figure 5: Submission polarity')
+# Plot general polarity, discounting perfect 0's
+plot_polarity(df_no[df_no['title_polarity'] != 0], 'Figure 5: Submission polarity')
 output_sentiment_stats(df_no, 'General Polarity')
 
 # Plot polarity without neutral
 df_no_pn = df_no[df_no['title_sentiment'] != "neutral"]
-plot_polarity(df_no_pn, 'Figure 6: Polarity w/o neutrals')
+plot_polarity(df_no_pn, 'Figure 6: Polarity w/o neutrals', df_no_pn['title_sentiment'])
 
-# TODO: Do for all subreddits
-# Plot news polarity
-df_no_news = df_no[df_no['subreddit'] == "news"]
-plot_polarity(df_no_news, 'Figure 7: r/news Polarity')
-output_sentiment_stats(df_no_news, 'News polarity')
+# Plot polarities of each subreddit
+g = sns.FacetGrid(data=df_no_pn, col='subreddit', hue='title_sentiment', col_wrap=4, sharex=False)
+g.fig.suptitle('Figure 9: Polarity by subreddit', y=1.03)
+g.map(sns.scatterplot, "title_polarity", "score")
+g.set_axis_labels("Title Polarity", "Upvotes")
+g.axes[0].legend()
+plt.show()
+plt.clf()
 
-df_no_news_pn = df_no_pn[df_no_pn['subreddit'] == "news"]
-plot_polarity(df_no_news_pn, 'Figure 8: News polarity w/o neutrals')
-
-
-
+# Output polarity stats for each subreddit
+for subreddit in subreddit_names:
+    output_sentiment_stats(df_no[df_no['subreddit'] == subreddit], f"r/{subreddit} polarity")
+    
+# Plot news polarity specifically
+df_news = df_no_pn[df_no_pn['subreddit'] == 'news']
+plot_polarity(df_news, 'Figure 10: r/news polarity', hue=df_news['title_sentiment'])
 
 # Output everything
 with open('output.txt', 'w') as file:

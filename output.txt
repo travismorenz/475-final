@@ -146,13 +146,52 @@ negative         179.474288   11765
 neutral          152.648464  164959
 positive         142.817081   29811
 Filter on low scores
-                        mean  count
-title_sentiment                    
-negative         2125.364324    925
-neutral          2153.881723  10932
-positive         2227.117811   1791
+                       mean  count
+title_sentiment                   
+negative         460.808385   4556
+neutral          491.353281  50934
+positive         497.606642   8491
 
-News polarity
+r/askreddit polarity
+                      mean  count
+title_sentiment                  
+negative         11.077788   3381
+neutral          12.011810  27011
+positive          8.601032   7557
+Filter on low scores
+                      mean  count
+title_sentiment                  
+negative         47.343849    634
+neutral          56.100338   4734
+positive         38.663724   1246
+
+r/videos polarity
+                      mean  count
+title_sentiment                  
+negative         39.778060   1577
+neutral          23.890159  25282
+positive         20.338497   6003
+Filter on low scores
+                       mean  count
+title_sentiment                   
+negative         515.932773    119
+neutral          347.592947   1673
+positive         427.098901    273
+
+r/funny polarity
+                       mean  count
+title_sentiment                   
+negative         190.515586   1604
+neutral          216.663901  26998
+positive         232.091508   4404
+Filter on low scores
+                       mean  count
+title_sentiment                   
+negative         404.435591    753
+neutral          481.245523  12117
+positive         524.272634   1944
+
+r/news polarity
                       mean  count
 title_sentiment                  
 negative         85.309138   1543
@@ -161,6 +200,32 @@ positive         21.403470   5418
 Filter on low scores
                         mean  count
 title_sentiment                    
-negative         1953.257576     66
-neutral          1644.760190   1055
-positive         1494.236111     72
+negative         1172.711712    111
+neutral           865.962310   2043
+positive          662.497006    167
+
+r/memes polarity
+                       mean  count
+title_sentiment                   
+negative         433.625931   3625
+neutral          422.059289  39147
+positive         470.203133   6193
+Filter on low scores
+                       mean  count
+title_sentiment                   
+negative         538.058219   2920
+neutral          557.657717  29610
+positive         620.540299   4690
+
+r/fantasy polarity
+                      mean  count
+title_sentiment                  
+negative         63.371429     35
+neutral          66.788690   1008
+positive         86.300847    236
+Filter on low scores
+                       mean  count
+title_sentiment                   
+negative         115.263158     19
+neutral           88.280053    757
+positive         118.409357    171
