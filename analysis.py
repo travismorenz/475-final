@@ -64,6 +64,18 @@ df = pd.read_csv('dataset.csv')
 df_o = df[df['dataset'] == 'outliers'] # With outliers
 df_no = df[df['dataset'] == 'no outliers'] # Without outliers
 
+###################################################################################################
+# General visualizations
+###################################################################################################
+
+# Bin submissions by their scores and plot
+df_o['binned_scores'] = pd.cut(df['score'], [0, 5, 10, 20, 50, 100, 1000, 10000, 500000])
+bins = df_o.groupby('binned_scores')['score'].agg(['count']).reset_index()
+bins.index = ['0-5', '5-10', '10-20', '20-50', '50-100', '100-1000', '1000-10000', '10000+']
+ax = bins.plot.pie(y='count')
+ax.set_ylabel("Upvotes")
+ax.set_title("Figure 1: Submissions by upvotes")
+
 
 ###################################################################################################
 # Analyze best posting times
@@ -73,22 +85,22 @@ days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sun
 
 # Plot general avgs (with/without outliers)
 data =  df.groupby(['dataset', 'day', 'hour'])['score'].agg(['mean']).reset_index()
-plot_avgs(data, 'dataset', 'General Findings')
+plot_avgs(data, 'dataset', 'Figure 2: Post times')
 
 # Plot avgs by subreddit (with outliers)
 data = df_o.groupby(['dataset', 'day', 'hour', 'subreddit'])['score']\
     .agg(['mean']).reset_index()
-plot_avgs(data, 'subreddit', 'By subreddit (with outliers)')
+plot_avgs(data, 'subreddit', 'Figure 3: Post times by subreddit (with outliers)')
 
 # Plot avgs by subreddit (without outliers)
 data = df_no.groupby(['dataset', 'day', 'hour', 'subreddit'])['score']\
     .agg(['mean']).reset_index()
-plot_avgs(data, 'subreddit', 'By subreddit (without outliers)')
+plot_avgs(data, 'subreddit', 'Figure 4: Post times by subreddit (without outliers)')
 
 # Get general best times
 output('General')
-top = df_o.groupby(['dataset', 'day', 'hour'])['score'].agg(['mean']).nlargest(3, 'mean')
-top_no = df_no.groupby(['dataset', 'day', 'hour'])['score'].agg(['mean']).nlargest(3, 'mean')
+top = df_o.groupby(['dataset', 'day', 'hour'])['score'].agg(['mean']).nlargest(10, 'mean')
+top_no = df_no.groupby(['dataset', 'day', 'hour'])['score'].agg(['mean']).nlargest(10, 'mean')
 output(top)
 output(top_no)
 output()
@@ -98,7 +110,7 @@ for subreddit in subreddit_names:
     output('r/' + subreddit)
     sub = df_o[df_o['subreddit'] == subreddit]
     sub_no = df_no[df_no['subreddit'] == subreddit]
-    top = sub.groupby(['dataset', 'day', 'hour'])['score'].agg(['mean']).nlargest(3, 'mean')
+    top = sub.groupby(['dataset', 'day', 'hour'])['score'].agg(['mean']).nlargest(10, 'mean')
     top_no = sub_no.groupby(['dataset', 'day', 'hour'])['score'].agg(['mean']).nlargest(3, 'mean')
     output(top)
     output(top_no)
@@ -110,21 +122,21 @@ for subreddit in subreddit_names:
 ###################################################################################################
 
 # Plot general polarity
-plot_polarity(df_no, 'General Polarity')
+plot_polarity(df_no, 'Figure 5: Submission polarity')
 output_sentiment_stats(df_no, 'General Polarity')
 
 # Plot polarity without neutral
 df_no_pn = df_no[df_no['title_sentiment'] != "neutral"]
-plot_polarity(df_no_pn, 'Polarity w/o neutrals')
+plot_polarity(df_no_pn, 'Figure 6: Polarity w/o neutrals')
 
 # TODO: Do for all subreddits
 # Plot news polarity
 df_no_news = df_no[df_no['subreddit'] == "news"]
-plot_polarity(df_no_news, 'News Polarity')
-output_sentiment_stats(df_no_news, 'News Polarity')
+plot_polarity(df_no_news, 'Figure 7: r/news Polarity')
+output_sentiment_stats(df_no_news, 'News polarity')
 
 df_no_news_pn = df_no_pn[df_no_pn['subreddit'] == "news"]
-plot_polarity(df_no_news_pn, 'News polarity w/o neutrals')
+plot_polarity(df_no_news_pn, 'Figure 8: News polarity w/o neutrals')
 
 
 
